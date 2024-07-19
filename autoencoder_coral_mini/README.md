@@ -7,8 +7,7 @@ In this demo, we explain how to run ML models on embedded systems:
 
 ![Alt text](images/Coral_mini_text.png)
 
-## Scripts description
-### run_tflite.py
+## run_tflite.py
 The "run_tflite.py" script demonstrates how to use a TensorFlow Lite (TFLite) model to perform inference on noisy test data.
 The main steps are summarized by the following:   
 1- Import the necessary libraries: "numpy", "tensorflow", and "os"   
@@ -33,3 +32,12 @@ c- Retreive the output and store in the results
 6- Use the command "nmtui" to open a GUI for configuring the internet connection on the board.   
 7- Download the GitHub repo to execute the code (use git clone)     
 8- Run the "run_tflite.py" script
+
+## Results
+- The results are stored in "Results.xlsx" file
+- In summary, running the inference on the Coral Dev mini board took an avergae inference time of 28.41 seconds.
+- For comparison, we ran the same script on a PC obtaining an average inference time of 0.9 seconds. (Processor: Intel® Core ™ i7-1075 CPU @ 2.60GHz. 2592 Mhz, 6 Cores, 12 Logical Processors)
+- The power measurements perfomed using the USB-monitoring device showed that the inference process running on the Coral Dev mini board caused an increase in the average power consumption of 0.59 W and an increase in average current consumption of 0.15 A.
+- A snapshot of the measurement process is shown below.
+
+![Alt text](images/Measurement.PNG)
