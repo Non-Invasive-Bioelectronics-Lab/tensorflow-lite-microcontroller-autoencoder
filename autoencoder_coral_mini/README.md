@@ -28,14 +28,14 @@ c- Retreive the output and store in the results
 2- Use a USB voltage and current detection meter (such as FNB58 USB tester) to monitor the current through the USB cable (optional)         
 3- Wait for the board LED to show green color indicating the that the boot process was completed successfully     
 4- Open terminal and run: mdt devices (This should return the name and IP of the connected board)      
-5- Use the command "mdt shell" to open a shell on the board using the MDT tool (Managed Device Tool). This starts an interactive shell session on the target device, allowing you to execute commands directly on the board.
-6- Use the command "nmtui" to open a GUI for configuring the internet connection on the board.   
+5- Use the command "mdt shell" to open a shell on the board using the MDT tool (Managed Device Tool). This starts an interactive shell session on the target device, allowing you to execute commands directly on the board.     
+6- Use the command "nmtui" to open a GUI for configuring the internet connection on the board.        
 7- Download the GitHub repo to execute the code (use git clone)     
 8- Run the "run_tflite.py" script
 
 ## Results
 - The results are stored in "Results.xlsx" file
-- In summary, running the inference on the Coral Dev mini board took an avergae inference time of 28.41 seconds.
+- In summary, running the inference on the Coral Dev mini board took an average inference time of 28.41 seconds to complete processing 1712 samples included in the testing dataset (with 800 elements each).    
 - For comparison, we ran the same script on a PC obtaining an average inference time of 0.9 seconds. (Processor: Intel® Core ™ i7-1075 CPU @ 2.60GHz. 2592 Mhz, 6 Cores, 12 Logical Processors)
 - The power measurements perfomed using the USB-monitoring device showed that the inference process running on the Coral Dev mini board caused an increase in the average power consumption of 0.59 W and an increase in average current consumption of 0.15 A.
 - A snapshot of the measurement process is shown below.
