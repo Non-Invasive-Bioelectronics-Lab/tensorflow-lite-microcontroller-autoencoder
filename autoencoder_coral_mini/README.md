@@ -36,8 +36,9 @@ c- Retreive the output and store in the results
 ## Results
 - The results are stored in "Results.xlsx" file
 - In summary, running the total inference on the Coral Dev mini board took an average of 28.41 seconds to complete processing 1712 samples included in the testing dataset (with 800 elements each). This results in a single sample inference time of 16 msec.   
-- For comparison, we ran the same script on a PC obtaining an average inference time of 0.9 seconds. (Processor: Intel® Core ™ i7-1075 CPU @ 2.60GHz. 2592 Mhz, 6 Cores, 12 Logical Processors)
-- The power measurements perfomed using the USB-monitoring device showed that the inference process running on the Coral Dev mini board caused an increase in the average power consumption of 0.59 W and an increase in average current consumption of 0.15 A.
+- For comparison, we ran the same script on a PC obtaining a total average inference time of 0.9 seconds for the 1712 samples in the dataset. This makes a single sample inference time of 0.53 msec on the PC. The PC processor is Intel® Core ™ i7-1075 CPU @ 2.60GHz. 2592 Mhz, 6 Cores, 12 Logical Processors.
+- The power measurements performed using the USB-monitoring device showed that the inference process running on the Coral Dev mini board caused an increase in the average power consumption of 0.73 W and an increase in average current consumption of 150 mA.
 - A snapshot of the measurement process is shown below.
+- For more details, please refer to the Results.xlsx document.
 
 ![Alt text](images/Measurement.PNG)
