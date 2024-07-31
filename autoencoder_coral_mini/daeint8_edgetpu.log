@@ -1,0 +1,12 @@
+Edge TPU Compiler version 16.0.384591198
+Input: daeint8
+Output: daeint8_edgetpu.tflite
+
+Operator                       Count      Status
+
+RESHAPE                        1          Mapped to Edge TPU
+RESHAPE                        7          More than one subgraph is not supported
+EXPAND_DIMS                    9          Tensor has unsupported rank (up to 3 innermost dimensions mapped)
+LOGISTIC                       1          More than one subgraph is not supported
+CONV_2D                        1          Mapped to Edge TPU
+CONV_2D                        7          More than one subgraph is not supported

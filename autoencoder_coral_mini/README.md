@@ -1,4 +1,4 @@
-# Running deep learning auto-encoder models on embedded systems
+# Running TFLite model on Coral Dev Mini board     
 
 ## Introduction   
 In this demo, we explain how to run ML models on embedded systems:      
@@ -7,21 +7,16 @@ In this demo, we explain how to run ML models on embedded systems:
 
 ![Alt text](images/Coral_mini_text.png)
 
-## run_tflite.py
-The "run_tflite.py" script demonstrates how to use a TensorFlow Lite (TFLite) model to perform inference on noisy test data.
-The main steps are summarized by the following:   
-1- Import the necessary libraries: "numpy", "tensorflow", and "os"   
-2- Get the current path and combine it with the filenames to create the full path of the model and the data files   
-3- Loads the data using "np.load"   
-4- Loads the TFLite model and allocate tensors    
-5- Gets the input and output details from the interpreter     
-6- Converts the x_text_noisy data to np.float32 and stores them in text_data    
-7- For each sample in the test data do the following:       
-a- Reshape the sample to match the input tensor shape of the TFLite model      
-b- Set the input and invoke inference      
-c- Retreive the output and store in the results       
-8- Convert the results into a Numpy array and store in another variable (decoded_layer)     
-9- Print the decoded_layer (results of the inference)  
+## Running models on Coral Dev mini
+
+After opening a shell to the Coral Dev Mini board, git clone the repository: https://github.com/MSH19/ML_testing. Or, download these files to a folder:
+
+- run_tflite_float_only.py (for running the float TFLite model and printing the results (tested))
+- run_tflite_float.py (for running the float TFLite model and printing the evaluation metrics (not tested))
+- run_tflite_int8.py (for running the TFLite int8 model and printing the results (tested))
+- run_tflite_int8_only.py (for running the float TFLite model and printing the evaluation metrics (not tested))
+- daefoat is the TFLite float model    
+- daeint8 is the TFLite quantized model
 
 ## Run the model on the Coral Dev Board Coral_mini_text
 1- Connect the board to a Linux-based PC through the data cable only    
@@ -31,14 +26,42 @@ c- Retreive the output and store in the results
 5- Use the command "mdt shell" to open a shell on the board using the MDT tool (Managed Device Tool). This starts an interactive shell session on the target device, allowing you to execute commands directly on the board.     
 6- Use the command "nmtui" to open a GUI for configuring the internet connection on the board.        
 7- Download the GitHub repo to execute the code (use git clone)     
-8- Run the "run_tflite.py" script
 
 ## Results
-- The results are stored in "Results.xlsx" file
-- In summary, running the total inference on the Coral Dev mini board took an average of 28.41 seconds to complete processing 1712 samples included in the testing dataset (with 800 elements each). This results in a single sample inference time of 16 msec.   
-- For comparison, we ran the same script on a PC obtaining a total average inference time of 0.9 seconds for the 1712 samples in the dataset. This makes a single sample inference time of 0.53 msec on the PC. The PC processor is Intel® Core ™ i7-1075 CPU @ 2.60GHz. 2592 Mhz, 6 Cores, 12 Logical Processors.
-- The power measurements performed using the USB-monitoring device showed that the inference process running on the Coral Dev mini board caused an increase in the average power consumption of 0.73 W and an increase in average current consumption of 150 mA.
+
+- Running TFlite Float model on Coral mini Dev:       
+Total runtime (1712 samples) = 28.32 seconds      
+Single invoke runtime = 16.54 msec       
+Power measurements:     
+VBUS= 4.97 V   
+IBUS = 0.385 A  
+PBUS= 1.915 W    
+
+- Running TFLite Int8 model on Coral Mini Dev:     
+Total runtime (1712 samples) = 15.28 seconds     
+Single invoke runtime = 8.925 msec      
+Power measurements:     
+VBUS= 4.98 V    
+IBUS = 0.351 A    
+PBUS=  1.75 W    
+
 - A snapshot of the measurement process is shown below.
 - For more details, please refer to the Results.xlsx document.
 
 ![Alt text](images/Measurement.PNG)
+
+## edgeTPU compilation:   
+
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -    
+
+echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list     
+
+sudo apt-get update     
+
+sudo apt-get install edgetpu-compiler     
+
+sudo edgetpu_compiler daeint8     
+
+Edge TPU Compiler version 16.0.384591198      
+Input: daeint8       
+Output: daeint8_edgetpu.tflite
